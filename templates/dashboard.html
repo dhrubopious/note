@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard - My Notes App</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js"></script> <!-- Link to the new JavaScript file -->
   </head>
   <body>
     <header>
@@ -15,7 +16,6 @@
           <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
           <li><a href="{{ url_for('login') }}">Log In</a></li>
           <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-
           <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
         </ul>
       </nav>
@@ -44,11 +44,21 @@
 
         <section class="notes-list">
           <h3>Your Notes</h3>
+          <br>
           <ul>
             {% for note in notes %}
               <li>
-                <h4>{{ note.title }}</h4>
-                <p>{{ note.content }}</p>
+                <h4 class="note-title">{{ note.title }}</h4>
+                <p class="note-content">{{ note.content }}</p>
+                <div class="actions">
+                  <button class="btn edit-btn" onclick="toggleEdit('{{ note.id }}')">Edit</button>
+                  <button class="btn delete-btn" onclick="deleteNote('{{ note.id }}')">Delete</button>
+                  <form id="edit-form-{{ note.id }}" action="/edit_note/{{ note.id }}" method="post" style="display:none;">
+                    <input type="text" name="note_title" value="{{ note.title }}" required />
+                    <textarea name="note_content" required>{{ note.content }}</textarea>
+                    <button type="submit" class="btn">Save</button>
+                  </form>
+                </div>
               </li>
             {% endfor %}
           </ul>
@@ -57,7 +67,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 My Notes App</p>
+      <p>&copy; Dhrubo Gonsalves 2025 My Notes App</p>
     </footer>
   </body>
 </html>

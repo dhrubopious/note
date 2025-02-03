@@ -3,95 +3,95 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
     padding: 20px;
-  }
-  
-  header {
+}
+
+header {
     background: #333;
     color: #fff;
     padding: 10px 0;
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  header h1 {
+}
+
+header h1 {
     margin-bottom: 10px;
-  }
-  
-  nav ul {
+}
+
+nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     margin: 0 15px;
-  }
-  
-  nav ul li a {
+}
+
+nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-  }
-  
-  nav ul li a:hover {
+}
+
+nav ul li a:hover {
     text-decoration: underline;
-  }
-  
-  main {
+}
+
+main {
     max-width: 800px;
     margin: 0 auto;
     background: #fff;
     padding: 20px;
     border-radius: 5px;
-  }
-  
-  footer {
+}
+
+footer {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
     color: #666;
-  }
-  
-  /* Section styling */
-  .form-section,
-  .welcome,
-  .dashboard {
+}
+
+/* Section styling */
+.form-section,
+.welcome,
+.dashboard {
     margin-bottom: 20px;
-  }
-  
-  .form-section h2,
-  .welcome h2,
-  .dashboard h2 {
+}
+
+.form-section h2,
+.welcome h2,
+.dashboard h2 {
     margin-bottom: 15px;
-  }
-  
-  /* Form styling */
-  .form-group {
+}
+
+/* Form styling */
+.form-group {
     margin-bottom: 15px;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group textarea {
+}
+
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .btn {
+}
+
+.btn {
     display: inline-block;
     background: #333;
     color: #fff;
@@ -101,31 +101,48 @@
     border-radius: 4px;
     cursor: pointer;
     margin-left: 10px;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     background: #555;
-  }
-  
-  /* Dashboard specific styles */
-  .notes-list ul {
+}
+
+/* Dashboard specific styles */
+.notes-list {
+    padding: 20px; /* Increase padding for the notes list */
+}
+
+.notes-list ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .notes-list li {
+}
+
+.notes-list li {
     background: #f0f0f0;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 4px;
-  }
-  
-  .notes-list h4 {
-    margin-bottom: 5px;
-  }
+}
 
-  .actions {
+.notes-list h4 {
+    margin-bottom: 5px;
+}
+
+.actions {
     display: flex;
-   margin-left: 250px;
-  }
-  
+    margin-top: 10px; /* Space between note content and buttons */
+}
+
+.edit-btn, .delete-btn {
+    background: #007bff; /* Blue background for buttons */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px; /* Space between buttons */
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background: #0056b3; /* Darker blue on hover */
+}

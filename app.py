@@ -6,7 +6,6 @@ import logging
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '1234'
 
-
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'  # MySQL server address
 app.config['MYSQL_USER'] = 'root'  # Replace with your MySQL username
@@ -15,7 +14,6 @@ app.config['MYSQL_DB'] = 'note_app'  # Replace with your database name
 
 # Initialize MySQL
 mysql = MySQL(app)
-
 
 @app.route('/')
 def index():
@@ -93,6 +91,39 @@ def dashboard():
     notes = cur.fetchall()
     cur.close()
     return render_template('dashboard.html', notes=notes, current_user=session['user'])
+
+@app.route('/edit_note/<int:note_id>', methods=['POST'])
+def edit_note(note_id):
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+    
+    note_title = request.form['note_title']
+    note_content = request.form['note_content']
+    
+    cur = mysql.connection.cursor()
+    cur.execute(
+        "UPDATE notes SET title = %s, content = %s WHERE id = %s AND user_id = %s",
+        (note_title, note_content, note_id, session['user']['id'])
+    )
+    mysql.connection.commit()
+    cur.close()
+    
+    return redirect(url_for('dashboard'))
+
+@app.route('/delete_note/<int:note_id>', methods=['POST'])
+def delete_note(note_id):
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+    
+    cur = mysql.connection.cursor()
+    cur.execute(
+        "DELETE FROM notes WHERE id = %s AND user_id = %s",
+        (note_id, session['user']['id'])
+    )
+    mysql.connection.commit()
+    cur.close()
+    
+    return redirect(url_for('dashboard'))
 
 @app.route('/logout')
 def logout():
