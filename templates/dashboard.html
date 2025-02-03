@@ -14,6 +14,8 @@
           <li><a href="{{ url_for('index') }}">Home</a></li>
           <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
           <li><a href="{{ url_for('login') }}">Log In</a></li>
+          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+
           <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
         </ul>
       </nav>
@@ -22,11 +24,12 @@
     <main>
       <section class="dashboard">
         <h2>Your Dashboard</h2>
-        <p>Welcome, <strong>User Name</strong>!</p>
+        <p>Welcome to Notes, {{ current_user.username }}!</p>
+        <br>
 
         <section class="new-note">
           <h3>Create a New Note</h3>
-          <form action="/create_note" method="post">
+          <form action="/dashboard" method="post">
             <div class="form-group">
               <label for="note_title">Title:</label>
               <input type="text" id="note_title" name="note_title" required />
@@ -42,14 +45,12 @@
         <section class="notes-list">
           <h3>Your Notes</h3>
           <ul>
-            <li>
-              <h4>Note Title 1</h4>
-              <p>This is an example note content.</p>
-            </li>
-            <li>
-              <h4>Note Title 2</h4>
-              <p>This is another example note content.</p>
-            </li>
+            {% for note in notes %}
+              <li>
+                <h4>{{ note.title }}</h4>
+                <p>{{ note.content }}</p>
+              </li>
+            {% endfor %}
           </ul>
         </section>
       </section>

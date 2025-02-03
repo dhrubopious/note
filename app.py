@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
+import logging
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '1234'
+
 
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'  # MySQL server address
@@ -12,6 +15,7 @@ app.config['MYSQL_DB'] = 'note_app'  # Replace with your database name
 
 # Initialize MySQL
 mysql = MySQL(app)
+
 
 @app.route('/')
 def index():
@@ -36,6 +40,7 @@ def signup():
             )
             mysql.connection.commit()
         except Exception as e:
+            logging.error(f"Error during signup: {e}")
             return f"An error occurred: {e}", 500
         finally:
             cur.close()
@@ -56,8 +61,6 @@ def login():
                 (username_or_email, username_or_email, password)
             )
             user = cur.fetchone()
-        except Exception as e:
-            return f"An error occurred: {e}", 500
         finally:
             cur.close()
 
@@ -98,5 +101,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.secret_key = 'your_secret_key'  # Set a secret key for session management
     app.run(debug=True)
