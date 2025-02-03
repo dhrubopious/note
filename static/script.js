@@ -1,6 +1,23 @@
 function toggleEdit(noteId) {
-    const form = document.getElementById('edit-form-' + noteId);
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    const modal = document.getElementById('edit-modal');
+    const form = document.getElementById('modal-edit-form');
+    const titleInput = document.getElementById('modal_note_title');
+    const contentInput = document.getElementById('modal_note_content');
+
+    // Set the form action to the correct note edit URL
+    form.action = '/edit_note/' + noteId;
+
+    // Populate the modal inputs with the current note data
+    titleInput.value = document.querySelector('#edit-form-' + noteId + ' input[name="note_title"]').value;
+    contentInput.value = document.querySelector('#edit-form-' + noteId + ' textarea[name="note_content"]').value;
+
+    // Display the modal
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    const modal = document.getElementById('edit-modal');
+    modal.style.display = 'none';
 }
 
 function deleteNote(noteId) {
