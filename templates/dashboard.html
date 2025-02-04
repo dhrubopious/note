@@ -24,7 +24,9 @@
         <p>Welcome to Notes, {{ current_user.username }}!</p>
         <br>
 
-        <section class="new-note">
+        <button id="create-button" class="btn" onclick="toggleCreateForm()">Create</button>
+        <div id="new-note-form" style="display:none;">
+          <br>
           <h3>Create a New Note</h3>
           <form action="/dashboard" method="post">
             <div class="form-group">
@@ -37,7 +39,7 @@
             </div>
             <button type="submit" class="btn">Save Note</button>
           </form>
-        </section>
+        </div>
 
         <section class="notes-list">
           <h3>Your Notes</h3>

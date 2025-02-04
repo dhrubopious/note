@@ -35,3 +35,12 @@ function deleteNote(noteId) {
         });
     }
 }
+
+function toggleCreateForm() {
+    const form = document.getElementById('new-note-form');
+    if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block';
+    } else {
+        form.style.display = 'none';
+    }
+}
