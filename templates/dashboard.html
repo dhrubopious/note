@@ -46,7 +46,7 @@
             {% for note in notes %}
               <li>
                 <h4 class="note-title">{{ note.title }}</h4>
-                <p class="note-content">{{ note.content }}</p>
+                <p class="note-content">{{ note.content | replace('\n', '<br>') | safe }}</p>
                 <div class="actions">
                   <button class="btn edit-btn" onclick="toggleEdit('{{ note.id }}')">Edit</button>
                   <button class="btn delete-btn" onclick="deleteNote('{{ note.id }}')">Delete</button>
